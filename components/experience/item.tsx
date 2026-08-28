@@ -32,21 +32,7 @@ const ExperienceItem = ({
   className,
   ...attr
 }: ExperienceItemProps) => {
-  const titleLink = (
-    <Link
-      href={`${ROUTES.EXPERIENCES}/${slug}`}
-      className="hover:underline underline-offset-4"
-      onClick={() =>
-        trackExperienceDetailClick(
-          slug,
-          `${experienceTitle}, ${experienceOrg.name}`,
-          showHeader ? "home" : "listing"
-        )
-      }
-    >
-      {`${experienceTitle}, ${experienceOrg?.name}`}
-    </Link>
-  );
+  const titleText = `${experienceTitle}, ${experienceOrg?.name}`;
 
   return (
     <div
@@ -63,7 +49,7 @@ const ExperienceItem = ({
         <div className="space-y-0.5">
           <Title
             className="font-sans text-base font-semibold tracking-tight"
-            render={showHeader ? <h3>{titleLink}</h3> : <h2>{titleLink}</h2>}
+            render={showHeader ? <h3>{titleText}</h3> : <h2>{titleText}</h2>}
           />
           {experienceOrg?.link && experienceOrg?.websiteDisplayName ? (
             <div className="flex items-center justify-start gap-1.5 text-xs text-muted-foreground">

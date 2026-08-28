@@ -1,4 +1,3 @@
-import { Icons } from "@/components/icons";
 import { SITE } from "@/constants/site";
 import type {
   Project,
@@ -28,6 +27,7 @@ export const PROJECTS = [
     description:
       "Engineered an end-to-end Retrieval-Augmented Generation platform supporting parallel ingestion of multi-format documents (PDFs, web URLs, YouTube transcripts) with source-verifiable citations.",
     featured: true,
+    image: "/projects/cirix.png",
     links: {
       github: "https://github.com/anuptiwari17/cirix",
       website: "https://cirix.vercel.app",
@@ -45,6 +45,7 @@ export const PROJECTS = [
     description:
       "Designed and deployed a secure enterprise management backend managing hierarchical task assignment, status transition lifecycles, Row-Level Security, and sub-50ms response times.",
     featured: true,
+    image: "/projects/nucleo.png",
     links: {
       github: "https://github.com/anuptiwari17/nucleo",
       website: "https://nucleoorg.vercel.app",
@@ -62,6 +63,7 @@ export const PROJECTS = [
     description:
       "Automated grievance tracking platform with algorithmic authority routing based on natural language categorization, jurisdiction mapping, and real-time petition validation.",
     featured: true,
+    image: "/projects/nyaysetu.png",
     links: {
       github: "https://github.com/anuptiwari17/nyaysetu",
       website: "https://nyaysetu-c8c4.vercel.app/",
@@ -71,4 +73,3 @@ export const PROJECTS = [
     title: "NyaySetu",
   },
 ] satisfies readonly Project[];
-

@@ -1,0 +1,40 @@
+---
+title: Nucleo
+description: Full-stack enterprise task and organization management platform featuring role-based access control, real-time WebSocket synchronization, and interactive team analytics.
+date: 2026-06-01
+slug: nucleo
+category: Enterprise Systems
+---
+
+# Nucleo
+
+Nucleo is an enterprise-grade task and team management platform designed to streamline multi-tier organization onboarding, role-based governance, and real-time task lifecycle tracking.
+
+## Links
+
+- **Live Platform**: [nucleoorg.vercel.app](https://nucleoorg.vercel.app/)
+- **Source Code**: [github.com/anuptiwari17/nucleo](https://github.com/anuptiwari17/nucleo)
+
+## Overview
+
+Modern organizations require structured delegation and real-time visibility across departments. Nucleo solves this by establishing strict hierarchical governance (Admin → Manager → Employee) combined with zero-latency WebSocket updates, ensuring team members receive immediate state updates across task creation, assignment, and status transitions.
+
+## Key Features
+
+- **Multi-Tenant Organization Onboarding**: Automated workspace creation binding administrative accounts to organizational records during signup.
+- **Hierarchical Access Control**:
+  - **Admin**: Cross-department task delegation, manager administration, and global organization analytics.
+  - **Manager**: Team oversight, direct assignment tracking, and performance monitoring.
+  - **Employee**: Task execution with stage tracking (Active, Completed, Failed) and structured resolution notes.
+- **Real-Time Synchronization**: Room-based Socket.io event broadcasting with optimistic UI updates for task state changes.
+- **Secure Authentication**: JWT-driven session management stored via HTTP-only cookies with bcrypt password encryption.
+- **Performance Dashboards**: Interactive metrics rendering task completion rates and workload distribution.
+
+## Tech Stack
+
+- **Frontend**: React 19, Vite, Tailwind CSS, Chart.js, Lucide Icons
+- **Backend**: Node.js, Express.js
+- **Real-Time Engine**: Socket.io
+- **Database**: PostgreSQL (Supabase)
+- **Authentication**: JWT (HTTP-Only Cookies), bcrypt
+- **Hosting**: Vercel (Frontend), Railway (Backend API)
