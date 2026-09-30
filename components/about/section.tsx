@@ -28,12 +28,9 @@ const PROBLEMS_SOLVED = [
 const AboutSection = () => {
   return (
     <IntroSection>
-      <div className="prose text-muted-foreground prose-p:my-2 dark:prose-invert max-w-full text-sm leading-6 font-normal">
+      <div className="text-muted-foreground max-w-xl text-base sm:text-[1.125rem] leading-relaxed font-normal">
         <p>
-          Software Developer based in Jalandhar, India, pursuing B.Tech in Information Technology at National Institute of Technology Jalandhar (Aug 2024 – Jun 2028).
-        </p>
-        <p>
-          Focused on Backend Engineering, Distributed Systems, Full-Stack Development, Systems & APIs, RAG / Vector Search, Database Engineering, and Algorithmic Problem Solving.
+          Software developer focused on backend architectures, scale, and clean APIs. Simple by design.
         </p>
       </div>
 

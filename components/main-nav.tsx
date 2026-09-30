@@ -16,11 +16,11 @@ import { getActiveSection, getHomeNavItem, isNavGroupActive } from "@/lib/nav";
 import { cn } from "@/lib/utils";
 
 const NAV_ITEMS = [
-  { href: ROUTES.HOME, id: "home", label: "home" },
-  { href: ROUTES.PROJECTS, id: "projects", label: "projects" },
-  { href: ROUTES.EXPERIENCES, id: "experiences", label: "experience" },
-  { href: ROUTES.USES, id: "uses", label: "skills" },
-  { href: ROUTES.CONTACT, id: "contact", label: "contact" },
+  { href: ROUTES.HOME, id: "home", label: "Home" },
+  { href: ROUTES.PROJECTS, id: "projects", label: "Projects" },
+  { href: ROUTES.EXPERIENCES, id: "experiences", label: "Experience" },
+  { href: ROUTES.USES, id: "uses", label: "Skills" },
+  { href: ROUTES.CONTACT, id: "contact", label: "Contact" },
 ];
 
 const MainNav = () => {
@@ -29,17 +29,17 @@ const MainNav = () => {
 
   const navLinkClass = (id: string) =>
     cn(
-      "text-sm font-medium transition-colors px-2 py-1 rounded-md",
+      "font-sans text-[0.9375rem] font-medium tracking-tight transition-colors px-2.5 py-1.5 rounded-lg",
       activeSection === id
-        ? "text-foreground font-semibold"
-        : "text-muted-foreground hover:text-foreground"
+        ? "text-foreground font-semibold bg-muted/60"
+        : "text-muted-foreground hover:text-foreground hover:bg-muted/40"
     );
 
   return (
     <div className="flex items-center">
       <nav className="flex items-center">
         <NavigationMenu>
-          <NavigationMenuList className="gap-1 sm:gap-2">
+          <NavigationMenuList className="gap-1 sm:gap-1.5">
             {NAV_ITEMS.map((item) => (
               <NavigationMenuItem key={item.id}>
                 <NavigationMenuLink
