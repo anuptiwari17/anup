@@ -8,6 +8,7 @@ const SECTION_ROUTES: { id: SectionId; route: string }[] = [
   { id: "crafts", route: ROUTES.CRAFTS },
   { id: "experiences", route: ROUTES.EXPERIENCES },
   { id: "favorites", route: ROUTES.FAVORITES },
+  { id: "resume", route: ROUTES.RESUME },
   { id: "stats", route: ROUTES.STATS },
   { id: "uses", route: ROUTES.USES },
 ];

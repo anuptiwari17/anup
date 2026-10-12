@@ -78,8 +78,7 @@ export const ContactForm = () => {
           Message sent successfully!
         </h3>
         <p className="text-sm text-muted-foreground max-w-md mx-auto">
-          Thanks for reaching out. Your message was delivered directly to my
-          inbox ({LINK.EMAIL}) and I’ll get back to you soon.
+          Thanks for reaching out! Your message has been received and I’ll get back to you as soon as possible.
         </p>
         <div className="pt-2">
           <Button
@@ -167,7 +166,7 @@ export const ContactForm = () => {
         </div>
       )}
 
-      <div className="flex items-center justify-between pt-1">
+      <div className="flex items-center justify-start pt-1">
         <Button
           type="submit"
           disabled={status === "submitting"}
@@ -185,10 +184,6 @@ export const ContactForm = () => {
             </>
           )}
         </Button>
-
-        <span className="text-xs text-muted-foreground font-mono">
-          Free & Direct Delivery
-        </span>
       </div>
     </form>
   );
