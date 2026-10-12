@@ -1,26 +1,30 @@
 "use client";
 
 import { ChevronDown } from "lucide-react";
-import Link from "next/link";
 import { useState } from "react";
 
-import { AppLink } from "@/components/ui/app-link";
 import type { GlimpseData } from "@/components/ui/glimpse/types";
-import { Title } from "@/components/ui/title";
 import { TechStack } from "@/components/uses/tech-stack";
-import { ROUTES } from "@/constants/routes";
-import { trackExperienceDetailClick } from "@/lib/events";
 import { cn } from "@/lib/utils";
 import type { Experience } from "@/types/experiences";
 
 interface ExperienceItemProps
-  extends Experience, Omit<React.ComponentProps<"div">, "title"> {
+  extends Experience,
+    Omit<React.ComponentProps<"div">, "title"> {
   showHeader?: boolean;
   preview?: GlimpseData | null;
 }
 
+const formatPeriod = (start?: string, end?: string) => {
+  const s = start?.replace(/,/g, "").toLowerCase() ?? "";
+  const e = end?.replace(/,/g, "").toLowerCase() ?? "";
+  if (!s && !e) return "";
+  if (!e) return `${s} — now`;
+  return `${s} — ${e}`;
+};
+
 const ExperienceItem = ({
-  slug,
+  slug: _slug,
   experienceTitle,
   experienceDescription,
   experienceOrg,
@@ -29,106 +33,83 @@ const ExperienceItem = ({
   category: _category,
   orgDescription: _orgDescription,
   experienceLinks: _experienceLinks,
-  showHeader = true,
-  preview,
+  showHeader: _showHeader = true,
+  preview: _preview,
   className,
   ...attr
 }: ExperienceItemProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const titleText = `${experienceTitle}, ${experienceOrg?.name}`;
+
+  // Take the first bullet point as the primary clean 1-sentence summary
+  const primarySummary = experienceDescription?.[0] ?? "";
+  const remainingBullets = experienceDescription?.slice(1) ?? [];
 
   return (
     <div
       className={cn(
-        "relative pl-4 py-4 space-y-3 border-l-2 border-border/60 transition-all duration-200 hover:border-foreground/80 group/exp",
+        "py-3 space-y-1 group/work transition-opacity duration-200",
         className
       )}
       {...attr}
     >
-      {/* Timeline Node Dot */}
-      <div className="absolute -left-[5px] top-6 h-2 w-2 rounded-full bg-border transition-colors duration-200 group-hover/exp:bg-foreground" />
+      {/* Row 1: Company Name & Date */}
+      <div className="flex items-baseline justify-between gap-2">
+        <h3 className="font-medium text-foreground text-[15px] tracking-tight truncate">
+          {experienceOrg.name}
+        </h3>
+        <span className="text-xs font-mono text-muted-foreground lowercase shrink-0">
+          {formatPeriod(experienceStatus?.startAt, experienceStatus?.endAt)}
+        </span>
+      </div>
 
-      <div className="flex flex-wrap items-center justify-between gap-2">
-        <div
-          role="button"
-          tabIndex={0}
-          onClick={() => setIsExpanded((prev) => !prev)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              e.preventDefault();
-              setIsExpanded((prev) => !prev);
-            }
-          }}
-          className="space-y-0.5 cursor-pointer select-none"
-        >
-          <Title
-            className="font-sans text-base font-semibold tracking-tight hover:text-foreground/90 transition-colors"
-            render={showHeader ? <h3>{titleText}</h3> : <h2>{titleText}</h2>}
-          />
-          {experienceOrg?.link && experienceOrg?.websiteDisplayName ? (
-            <div
-              className="flex items-center justify-start gap-1.5 text-xs text-muted-foreground"
-              onClick={(e) => e.stopPropagation()}
-            >
-              {"at "}
-              <AppLink
-                className="text-xs font-medium text-foreground hover:underline"
-                href={experienceOrg.link}
-                target="_blank"
-                external
-                preview={preview}
-                eventName="external_link_click"
-                eventProperties={{
-                  context: "experience_item",
-                  link_type: "website",
-                  slug,
-                  title: experienceOrg.name,
-                  url: experienceOrg.link,
-                }}
-              >
-                {experienceOrg.websiteDisplayName}
-              </AppLink>
-            </div>
-          ) : null}
-        </div>
+      {/* Row 2: Role */}
+      <div className="text-sm text-muted-foreground font-normal">
+        {experienceTitle}
+      </div>
 
-        <div className="flex items-center gap-2 ml-auto">
-          <span className="inline-flex items-center rounded-full bg-muted/70 px-2.5 py-0.5 text-xs font-mono font-medium text-muted-foreground border border-border/50">
-            {`${experienceStatus?.startAt} - ${experienceStatus?.endAt}`}
-          </span>
+      {/* Row 3: Direct 1-sentence summary */}
+      {primarySummary && (
+        <p className="text-sm text-muted-foreground/80 leading-relaxed pt-0.5 font-normal">
+          {primarySummary}
+        </p>
+      )}
+
+      {/* Expandable details if there are more bullets or tech stack */}
+      {(remainingBullets.length > 0 || experienceTech?.length) && (
+        <div className="pt-1">
           <button
             type="button"
             onClick={() => setIsExpanded((prev) => !prev)}
             aria-expanded={isExpanded}
-            aria-label={`${isExpanded ? "Collapse" : "Expand"} details for ${experienceOrg?.name}`}
-            className="p-1 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted/80 transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring cursor-pointer"
+            className="inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition-colors cursor-pointer select-none"
           >
+            <span>{isExpanded ? "Show less" : "More details"}</span>
             <ChevronDown
               className={cn(
-                "size-4 transition-transform duration-200",
+                "size-3.5 transition-transform duration-200",
                 isExpanded && "rotate-180"
               )}
             />
           </button>
-        </div>
-      </div>
 
-      {isExpanded && experienceDescription?.length ? (
-        <ul className="flex flex-col gap-1.5 pl-4 text-xs sm:text-sm text-muted-foreground/90 leading-relaxed list-disc animate-in fade-in-50 slide-in-from-top-1 duration-200">
-          {experienceDescription.map((descriptionItem, index) => (
-            <li
-              key={index}
-              dangerouslySetInnerHTML={{ __html: descriptionItem }}
-            />
-          ))}
-        </ul>
-      ) : null}
-
-      {isExpanded && experienceTech?.length ? (
-        <div className="pt-1 animate-in fade-in-50 duration-200">
-          <TechStack items={experienceTech} />
+          {isExpanded && (
+            <div className="pt-2.5 space-y-3 animate-in fade-in-50 slide-in-from-top-1 duration-200">
+              {remainingBullets.length > 0 && (
+                <ul className="flex flex-col gap-1.5 pl-4 text-xs sm:text-sm text-muted-foreground/90 leading-relaxed list-disc">
+                  {remainingBullets.map((bullet, idx) => (
+                    <li key={idx} dangerouslySetInnerHTML={{ __html: bullet }} />
+                  ))}
+                </ul>
+              )}
+              {experienceTech?.length ? (
+                <div className="pt-1">
+                  <TechStack items={experienceTech} />
+                </div>
+              ) : null}
+            </div>
+          )}
         </div>
-      ) : null}
+      )}
     </div>
   );
 };

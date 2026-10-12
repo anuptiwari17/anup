@@ -30,11 +30,11 @@ const ExperiencesView = ({
         )}
       >
         <Title
-          className="text-xl font-medium italic"
-          render={<h2>{"experience."}</h2>}
+          className="text-xl font-medium tracking-tight"
+          render={<h2>{"Work"}</h2>}
         />
         <CopyLink
-          title={"Experience"}
+          title={"Work"}
           className="hidden group-hover/experience:inline-flex"
         />
       </div>

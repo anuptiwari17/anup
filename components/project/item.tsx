@@ -107,6 +107,7 @@ interface ProjectItemProps
   extends
     Omit<React.HTMLAttributes<HTMLDivElement>, "title">,
     Pick<Project, "slug" | "title" | "description" | "links"> {
+  image?: string;
   showHeader?: boolean;
   variant?: string;
   previews?: Record<string, GlimpseData>;
@@ -117,6 +118,7 @@ const ProjectItem = ({
   title,
   links,
   description,
+  image: projectImageProp,
   showHeader = true,
   className,
   variant = "list",
@@ -124,7 +126,7 @@ const ProjectItem = ({
   ...attr
 }: ProjectItemProps) => {
   const isGrid = variant === "grid";
-  const image = previews?.[links?.website ?? ""]?.image ?? "";
+  const image = projectImageProp || previews?.[links?.website ?? ""]?.image || "";
 
   const titleLink = (
     <Link

@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist_Mono } from "next/font/google";
-import localFont from "next/font/local";
+import { Geist, Geist_Mono } from "next/font/google";
 
 import "@/styles/globals.css";
 
@@ -13,34 +12,16 @@ import { ThemeProvider } from "@/providers/theme-provider";
 import { JsonLdScripts } from "@/seo/json-ld";
 import { baseMetadata } from "@/seo/metadata";
 
-const satoshi = localFont({
-  src: "../public/fonts/satoshi-variable.woff2",
-  variable: "--font-satoshi",
-  display: "swap",
-  weight: "300 900",
-});
-
-const erode = localFont({
-  src: [
-    {
-      path: "../public/fonts/erode-variable.woff2",
-      weight: "300 700",
-      style: "normal",
-    },
-    {
-      path: "../public/fonts/erode-variable-italic.woff2",
-      weight: "300 700",
-      style: "italic",
-    },
-  ],
-  variable: "--font-erode",
+const geist = Geist({
+  subsets: ["latin"],
+  variable: "--font-geist",
   display: "swap",
 });
 
 const geist_mono = Geist_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
-  weight: ["400"],
+  display: "swap",
 });
 
 export const viewport: Viewport = {
@@ -75,7 +56,7 @@ export default function RootLayout({
         <meta name="theme-color" content={META_THEME_COLORS.light} />
       </head>
       <body
-        className={`overscroll-none font-serif flex flex-col min-h-screen ${satoshi.variable} ${erode.variable} ${geist_mono.variable}`}
+        className={`overscroll-none font-sans antialiased flex flex-col min-h-screen ${geist.variable} ${geist_mono.variable}`}
       >
         <ThemeProvider>
           <Analytics projectId={env.NEXT_PUBLIC_CLARITY_PROJECT_ID} />

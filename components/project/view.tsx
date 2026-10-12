@@ -56,6 +56,7 @@ const ProjectsViewList = ({
           slug={project.slug}
           title={project.title}
           description={project.description}
+          image={project.image}
           links={project.links}
           previews={previews}
           variant={variant}
@@ -80,8 +81,8 @@ const ProjectsViewHeader = ({
   >
     <div className="group/projects flex flex-1 items-center gap-1">
       <Title
-        className="text-xl font-medium italic"
-        render={<h2>{"projects."}</h2>}
+        className="text-xl font-medium tracking-tight"
+        render={<h2>{"Projects"}</h2>}
       />
       <CopyLink
         title={"Projects"}
