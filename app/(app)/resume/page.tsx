@@ -62,7 +62,7 @@ const ResumePage = () => {
               {"Resume"}
             </Title>
             <p className="text-muted-foreground text-sm">
-              Software developer focused on backend architectures, scale, and clean APIs.
+              I build software that scales.
             </p>
           </div>
 

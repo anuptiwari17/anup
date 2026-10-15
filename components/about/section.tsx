@@ -10,7 +10,7 @@ const AboutSection = () => {
     <IntroSection>
       <div className="text-muted-foreground max-w-xl text-base sm:text-[1.125rem] leading-relaxed font-normal">
         <p>
-          Software developer focused on backend architectures, scale, and clean APIs. Simple by design.
+          I build software that scales.
         </p>
       </div>
 

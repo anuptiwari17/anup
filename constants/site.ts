@@ -14,8 +14,7 @@ export const SITE = {
   },
   DESCRIPTION: {
     LONG: "Software Developer based in Jalandhar, India. Focused on Backend Engineering, Distributed Systems, Full-Stack Development, Systems & APIs, RAG / Vector Search, Database Engineering, and Algorithmic Problem Solving.",
-    SHORT:
-      "Software developer focused on backend architectures, scale, and clean APIs. Simple by design.",
+    SHORT: "I build software that scales.",
   },
   KEYWORDS: [
     "Anup Tiwari",

@@ -1,14 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
-  <rect width="512" height="512" rx="128" fill="#0a0a0a"/>
-  <text x="50%" y="54%" dominant-baseline="middle" text-anchor="middle" fill="#ffffff" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="240" letter-spacing="-8">AT</text>
+  <g transform="translate(256, 256)">
+    <!-- 8-point geometric asterisk / spark -->
+    <rect x="-36" y="-216" width="72" height="432" rx="36" class="star-arm" />
+    <rect x="-36" y="-216" width="72" height="432" rx="36" transform="rotate(45)" class="star-arm" />
+    <rect x="-36" y="-216" width="72" height="432" rx="36" transform="rotate(90)" class="star-arm" />
+    <rect x="-36" y="-216" width="72" height="432" rx="36" transform="rotate(135)" class="star-arm" />
+    <circle r="44" class="star-center" />
+  </g>
   <style>
-    @media (prefers-color-scheme: light) {
-      rect { fill: #0a0a0a; }
-      text { fill: #ffffff; }
+    .star-arm, .star-center {
+      fill: #111111;
     }
     @media (prefers-color-scheme: dark) {
-      rect { fill: #ffffff; }
-      text { fill: #0a0a0a; }
+      .star-arm, .star-center {
+        fill: #ffffff;
+      }
     }
   </style>
 </svg>
