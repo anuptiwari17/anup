@@ -72,4 +72,22 @@ export const PROJECTS = [
     source: "personal",
     title: "NyaySetu",
   },
+  {
+    category: "Software Development",
+    date: {
+      month: "August",
+      year: 2026,
+    },
+    description:
+      "A sleek, dark-themed Software Asset Management platform frontend focused on premium UI and motion design with GSAP and Framer Motion.",
+    featured: true,
+    image: "/projects/sriska.png",
+    links: {
+      github: "https://github.com/anuptiwari17/sam",
+      website: "https://samorg.vercel.app/",
+    },
+    slug: "sriska",
+    source: "personal",
+    title: "Sriska",
+  },
 ] satisfies readonly Project[];

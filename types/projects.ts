@@ -12,6 +12,7 @@ export interface ProjectSourceOption {
 }
 
 export type ProjectCategory =
+  |"Software Development"
   | "Distributed Systems & RAG"
   | "Enterprise Systems"
   | "Civic Automation Platform"
